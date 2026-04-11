@@ -1,1 +1,1 @@
-from .main import equation
+from .main import quadratic, linear_one_variable
