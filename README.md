@@ -8,11 +8,16 @@ A module that allows you to solve quadratic and linear equations.
 
 ### Importing ###
 
-First, import the equation class from the equation_math_helper module.
+First, import the equation_maths_helper module.
 
 
-    from equation_maths_helper import equation
+    import equation_maths_helper
 
+For convenience, we recommend importing all necessary methods from the module at once.
+
+
+    from equation_maths_helper import linear_one_variable, quadratic
+    
 ### The `linear_one_variable` method ###
 
 The `linear_one_variable` method allows you to solve linear equations with a single variable.
@@ -23,8 +28,8 @@ The `linear_one_variable` method allows you to solve linear equations with a sin
 
 Example of using the method:
 
-    from equation_maths_helper import equation
-    equation_answer = equation().linear_one_variable(a=1, b=1, solution=True)
+    from equation_maths_helper import linear_one_variable
+    equation_answer = linear_one_variable(a=1, b=1, solution=True)
     print(equation_answer)
 
 
@@ -42,8 +47,8 @@ The method accepts the coefficients `a`, `b`, and `c` from the formula `a(x ** 2
 
 An example of using the method:
 
-    from equation_maths_helper import equation
-    equation_answer = equation().quadratic(a=1, b=1, c=1, solution=True)
+    from equation_maths_helper import quadratic
+    equation_answer = quadratic(a=1, b=1, c=1, solution=True)
     print(equation_answer)
 
 
@@ -63,10 +68,15 @@ Output of the solution to the console:
 
 ### Импорт ###
 
-Первым делом импортируйте класс equation из модуля eqution_math_helper.
+Первым делом импортируйте модуль equation_maths_helper.
 
 
-    from equation_maths_helper import equation
+    import equation_maths_helper
+
+Для удобства рекомендуем сразу импортировать все необходимые методы из модуля.
+
+
+    from equation_maths_helper import linear_one_variable, quadratic
 
 ### Метод `linear_one_variable` ###
 
@@ -78,8 +88,8 @@ Output of the solution to the console:
 
 Пример использования метода:
 
-    from equation_maths_helper import equation
-    equation_answer = equation().linear_one_variable(a=1, b=1, solution=True)
+    from equation_maths_helper import linear_one_variable
+    equation_answer = linear_one_variable(a=1, b=1, solution=True)
     print(equation_answer)
 
 
@@ -98,8 +108,8 @@ Output of the solution to the console:
 
 Пример использования метода:
 
-    from equation_maths_helper import equation
-    equation_answer = equation().quadratic(a=1, b=1, c=1, solution=True)
+    from equation_maths_helper import quadratic
+    equation_answer = quadratic(a=1, b=1, c=1, solution=True)
     print(equation_answer)
 
 
