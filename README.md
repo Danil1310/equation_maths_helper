@@ -49,8 +49,8 @@ The `linear_two_variables` method allows you to solve systems of linear equation
 
  The method takes the coefficients `a1`, `b1`, `c1` and `a2`, `b2`, `c2` from the formula
 
-    {a1 * x + b1 * x = c1, 
-    {a2 * x + b2 * x = c2.
+    {a1 * x + b1 * y = c1, 
+    {a2 * x + b2 * y = c2.
 
 and an optional argument `solution`, which is responsible for displaying the solution on the console. By default, it is set to `False`. Returns `False` in case of failure, a tuple with the roots of the equation (x and y), or `True`(any root) in case of success.
 
@@ -147,8 +147,8 @@ Output of the solution to the console:
 
 Метод принимает коээфициенты `a1`, `b1`, `c1` and `a2`, `b2`, `c2` из формулы
 
-    {a1 * x + b1 * x = c1, 
-    {a2 * x + b2 * x = c2.
+    {a1 * x + b1 * y = c1, 
+    {a2 * x + b2 * y = c2.
 
 и необязательный аргумент `solution`, который отвечает за вывод решения на консоль. По умолчанию он равен `False`. Возвращает `False` в случае неудачи, кортеж с корнями уравнения(x и y) или `True`(любой корень) в случае успеха.
 
