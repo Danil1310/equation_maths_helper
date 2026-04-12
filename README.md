@@ -6,7 +6,7 @@ A module that allows you to solve quadratic and linear equations.
 
 ## How to use? ##
 
-### Importing ###
+### Installing and importing ###
 
 First, install the equation_maths_helper module using the `pip` package manager.
 
