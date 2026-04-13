@@ -2,7 +2,7 @@
 ENG
 ---------
 
-A class that allows you to solve quadratic and linear equations.
+A module that allows you to solve quadratic and linear equations.
 
 Methods:
     linear_one_variable: solves the linear equation with one variable.
@@ -12,7 +12,7 @@ Methods:
 RU
 ---------
 
-Класс, позволяющий решать квадратные и линейные уравнения.
+Модуль, позволяющий решать квадратные и линейные уравнения.
 
 Методы:
     linear_one_variable: решает линейное уравнение с одной переменной.
