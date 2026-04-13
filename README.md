@@ -67,13 +67,13 @@ Output the solution to the console:
     Old: 1.0x + -3.0y = 11.0. New: 2.0x + -6.0y = 22.0.
     Old: 2.0x + 4.0y = -8.0. New: 4.0x + 8.0y = -16.0.
     A new system of linear equations:
-    -2.0x + 6.0y = -22.0,
+    -2.0x - -6.0y = -22.0,
     2.0x + 4.0y = -8.0.
-    Adding the systems. Result: 10.0x = -30.0
-    Root y: y = -b / a = x = 30.0 / -10.0 = -3.0.
+    Adding the systems. Result: 10.0y = -30.0
+    Root y: y = -b / a = 30.0 / -10.0 = -3.0.
     Substituting 'y' into the equation 2.0x + -6.0y = 22.0:
     2.0x + (-6.0 * -3.0) = 22.0.
-    Root x: x = -b / a = x = 4.0 / 2.0 = 2.0.
+    Root x: x = -b / a = 4.0 / 2.0 = 2.0.
     (2.0, -3.0)
  
 ### The `quadratic` method ###
@@ -165,13 +165,13 @@ Output of the solution to the console:
     Old: 1.0x + -3.0y = 11.0. New: 2.0x + -6.0y = 22.0.
     Old: 2.0x + 4.0y = -8.0. New: 4.0x + 8.0y = -16.0.
     A new system of linear equations:
-    -2.0x + 6.0y = -22.0,
+    -2.0x - -6.0y = -22.0,
     2.0x + 4.0y = -8.0.
-    Adding the systems. Result: 10.0x = -30.0
-    Root y: y = -b / a = x = 30.0 / -10.0 = -3.0.
+    Adding the systems. Result: 10.0y = -30.0
+    Root y: y = -b / a = 30.0 / -10.0 = -3.0.
     Substituting 'y' into the equation 2.0x + -6.0y = 22.0:
     2.0x + (-6.0 * -3.0) = 22.0.
-    Root x: x = -b / a = x = 4.0 / 2.0 = 2.0.
+    Root x: x = -b / a = 4.0 / 2.0 = 2.0.
     (2.0, -3.0)
 
 ### Метод `quadratic` ###
@@ -197,3 +197,4 @@ Output of the solution to the console:
     Second root: x2 = (-b + sqrt(d)) / 2 * a = (5 + 1.0) / 2 * 1 = 3.0.
     Roots: 2.0, 3.0.
     (2.0, 3.0)
+
