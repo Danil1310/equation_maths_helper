@@ -28,10 +28,10 @@ For convenience, we recommend importing all necessary methods from the module at
 The `linear_one_variable` method allows you to solve linear equations with a single variable.
 
 
- The method accepts the coefficients `a` and `b` from the formula `ax + b = 0`. It also has an additional `solution` parameter, which is responsible for outputting a step-by-step solution to the console. By default it is set to `False`. The method returns `False` if it fails (there are no roots), the root of the equation, or `True` if the root is any number.
+The method accepts the coefficients `a` and `b` from the formula `ax + b = 0`. It also has an additional `solution` parameter, which is responsible for outputting a step-by-step solution to the console. By default it is set to `False`. The method returns `False` if it fails (there are no roots), the root of the equation, or `True` if the root is any number.
 
 
-Example of using the method:
+An example of using the method:
 
     from equation_maths_helper import linear_one_variable
     equation_answer = linear_one_variable(a=1, b=1, solution=True)
@@ -47,7 +47,7 @@ Output the solution to the console:
 
 The `linear_two_variables` method allows you to solve systems of linear equations with two variables.
 
- The method takes the coefficients `a1`, `b1`, `c1` and `a2`, `b2`, `c2` from the formula
+The method takes the coefficients `a1`, `b1`, `c1` and `a2`, `b2`, `c2` from the formula
 
     {a1 * x + b1 * y = c1, 
     {a2 * x + b2 * y = c2.
@@ -55,7 +55,7 @@ The `linear_two_variables` method allows you to solve systems of linear equation
 and an optional argument `solution`, which is responsible for displaying the solution on the console. By default, it is set to `False`. Returns `False` in case of failure, a tuple with the roots of the equation (x and y), or `True`(any root) in case of success.
 
 
- An example of using the method:
+An example of using the method:
 
     from equation_maths_helper import linear_two_variables
     equation_answer = linear_two_variables(a1=1, b1=-3, c1=11, a2=2, b2=4, c2=-8, solution=True)
@@ -91,7 +91,7 @@ An example of using the method:
     print(equation_answer)
 
 
-Output of the solution to the console:
+Output the solution to the console:
 
     Discriminant: (b ** 2) - 4 * a * c = (-5 ** 2) - 4 * 1 * 6 = 1.
     First root: x1 = (-b - sqrt(d)) / 2 * a = (5 - 1.0) / 2 * 1 = 2.0.
@@ -197,4 +197,3 @@ Output of the solution to the console:
     Second root: x2 = (-b + sqrt(d)) / 2 * a = (5 + 1.0) / 2 * 1 = 3.0.
     Roots: 2.0, 3.0.
     (2.0, 3.0)
-
