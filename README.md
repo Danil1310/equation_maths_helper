@@ -18,10 +18,10 @@ After that, you can import it:
 
     import equation_maths_helper
 
-For convenience, we recommend importing all necessary methods from the module at once.
+For convenience, we recommend importing all methods from the module at once.
 
 
-    from equation_maths_helper import linear_one_variable, linear_two_variables, quadratic
+    from equation_maths_helper import *
 
 ### The `str_in_eq` method ###
 
@@ -135,10 +135,10 @@ Output the solution to the console:
 
     import equation_maths_helper
 
-Для удобства рекомендуем сразу импортировать все необходимые методы из модуля.
+Для удобства рекомендуем сразу импортировать все методы из модуля.
 
 
-    from equation_maths_helper import linear_one_variable, linear_two_variables, quadratic
+    from equation_maths_helper import *
 
 ### Метод `str_in_eq` ###
 
