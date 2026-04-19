@@ -31,18 +31,16 @@ def str_in_eq(equation: str, format: Literal["linear_one_variable", "linear_two_
     Переводит полученную строку в уравнение(находит коэффициенты). Принимает строку с линейным уравнением(`ax + bx = 0`), с системой линейных уравнений с двумя переменными(`a1x + b1x = c1, a2x + b2x = c2`) или с квадратным уравнением(`ax + bx = 0`) и аргумент `format`, отвечающий за тип уравнения. Знаки в уравнениях пишутся через пробел, системы пишутся через запятую, квадрат обозначается как `x`. Возвращает кортеж с коэффициентами уравнения.
     """
     equation = equation.split()
-    if len(equation) <= 1:
-        raise EquationError("The equation does not match the formula.")
     if format == "linear_one_variable":
         try:
             a = float(equation[0][0])
-        except ValueError:
+        except (ValueError, IndexError):
             try:            
                 if equation[0][0] == '-':
                     a = -float(equation[0][1])
                 else:
                     a = float(equation[0][0])
-            except ValueError:
+            except (ValueError, IndexError):
                 raise EquationError("The equation does not match the formula.")
         try:
             if equation[0][1] != 'x' and equation[0][2] != 'x':
@@ -60,7 +58,7 @@ def str_in_eq(equation: str, format: Literal["linear_one_variable", "linear_two_
         try:
             a1 = float(equation[0][0])
             a2 = float(equation[5][0])
-        except ValueError:
+        except (ValueError, IndexError):
             try:            
                 if equation[0][0] == '-':
                     a1 = -float(equation[0][1])
@@ -70,7 +68,7 @@ def str_in_eq(equation: str, format: Literal["linear_one_variable", "linear_two_
                     a2 = -float(equation[5][1])
                 else:
                     a2 = float(equation[5][0])
-            except ValueError:
+            except (ValueError, IndexError):
                 raise EquationError("The equation does not match the formula.")
         try:
             equation[4] = equation[4].strip(",")
@@ -102,13 +100,13 @@ def str_in_eq(equation: str, format: Literal["linear_one_variable", "linear_two_
     elif format == 'quadratic':
         try:
             a = float(equation[0][0])
-        except ValueError:
+        except (ValueError, IndexError):
             try:            
                 if equation[0][0] == '-':
                     a = -float(equation[0][1])
                 else:
                     a = float(equation[0][0])
-            except ValueError:
+            except (ValueError, IndexError):
                 raise EquationError("The equation does not match the formula.")
         try:
             if equation[0][1] != 'x' and equation[0][2] != 'x':
