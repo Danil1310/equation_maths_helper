@@ -1,7 +1,8 @@
+#Importing libraries
 from math import sqrt
 from typing import Literal
 
-
+#Error classes
 class LinearError(Exception):
     """An error has occured the linear function."""
     pass
@@ -14,15 +15,132 @@ class NotLinearWithTwoVariablesError(Exception):
     """A system of linear equations with two variables is a linear equation with one variable. """
     pass
 
-def linear_one_variable(a: int | float = 0, b: int | float = 0, solution: bool = False):
+class EquationError(Exception):
+    """Invalid equation."""
+    pass
+
+#Main functions
+def str_in_eq(equation: str, format: Literal["linear_one_variable", "linear_two_variables", "quadratic"]) -> (tuple[float, float] | tuple[float, float, float, float, float, float] | tuple[float, float, float]):
     """
     ENG
     ---------
-    Solves the linear equation with one variable. Accepts the values a and b from formula "ax + b = 0" and an optional argument solution, which displays the solution on the console. Returns False in case of failure, with root of the linear equation or True(any root) in case of success.
+    Converts the resulting string into an equation (finds the coefficients). Accepts a string with a linear equation (`ax + bx = 0`), a system of linear equations with two variables (`a1x + b1x = c1, a2x + b2x = c2`), or a quadratic equation (`ax + bx = 0`), and a `format` argument that specifies the type of equation. The signs in the equations are separated by spaces, the systems are separated by commas, and the square is denoted as `x`. Returns a tuple with the coefficients of the equation.
     
     RU
     ---------
-    Решает линейное уравнение с одной переменной. Принимает аргументы a и b из формулы "ax + b = 0" и необязательный аргумент solution, который отвечает за вывод решения на консоль. Возвращает False в случае неудачи, корень уравнения или True(любой корень) в случае успеха.
+    Переводит полученную строку в уравнение(находит коэффициенты). Принимает строку с линейным уравнением(`ax + bx = 0`), с системой линейных уравнений с двумя переменными(`a1x + b1x = c1, a2x + b2x = c2`) или с квадратным уравнением(`ax + bx = 0`) и аргумент `format`, отвечающий за тип уравнения. Знаки в уравнениях пишутся через пробел, системы пишутся через запятую, квадрат обозначается как `x`. Возвращает кортеж с коэффициентами уравнения.
+    """
+    equation = equation.split()
+    if len(equation) <= 1:
+        raise EquationError("The equation does not match the formula.")
+    if format == "linear_one_variable":
+        try:
+            a = float(equation[0][0])
+        except ValueError:
+            try:            
+                if equation[0][0] == '-':
+                    a = -float(equation[0][1])
+                else:
+                    a = float(equation[0][0])
+            except ValueError:
+                raise EquationError("The equation does not match the formula.")
+        try:
+            if equation[0][1] != 'x' and equation[0][2] != 'x':
+                raise EquationError("The equation does not match the formula.")
+            if equation[1] == '+':
+                b = float(equation[2])
+            elif equation[1] == '-':
+                b = -(float(equation[2]))
+            else:
+                raise EquationError("The equation does not match the formula.")
+            return a, b
+        except (ValueError, IndexError):
+            raise EquationError("The equation does not match the formula.")
+    elif format == 'linear_two_variables':
+        try:
+            a1 = float(equation[0][0])
+            a2 = float(equation[5][0])
+        except ValueError:
+            try:            
+                if equation[0][0] == '-':
+                    a1 = -float(equation[0][1])
+                else:
+                    a1 = float(equation[0][0])
+                if equation[5][0] == '-':
+                    a2 = -float(equation[5][1])
+                else:
+                    a2 = float(equation[5][0])
+            except ValueError:
+                raise EquationError("The equation does not match the formula.")
+        try:
+            equation[4] = equation[4].strip(",")
+            if equation[0][1] != 'x' and equation[0][2] != 'x':
+                raise EquationError("The equation does not match the formula.")
+            if equation[2][1] != 'y':
+                raise EquationError("The equation does not match the formula.")
+            if equation[1] == '+':
+                b1 = float(equation[2][0])
+            elif equation[1] == '-':
+                b1 = -(float(equation[2][0]))
+            else:
+                raise EquationError("The equation does not match the formula.")
+            c1 = float(equation[4])
+            if equation[5][1] != 'x' and equation[5][2] != 'x':
+                raise EquationError("The equation does not match the formula.")
+            if equation[7][1] != 'y':
+                raise EquationError("The equation does not match the formula.")
+            if equation[6] == '+':
+                b2 = float(equation[2][0])
+            elif equation[6] == '-':
+                b2 = -(float(equation[2][0]))
+            else:
+                raise EquationError("The equation does not match the formula.")
+            c2 = float(equation[9])
+            return a1, b1, c1, a2, b2, c2
+        except (ValueError, IndexError):
+            raise EquationError("The equation does not match the formula.")         
+    elif format == 'quadratic':
+        try:
+            a = float(equation[0][0])
+        except ValueError:
+            try:            
+                if equation[0][0] == '-':
+                    a = -float(equation[0][1])
+                else:
+                    a = float(equation[0][0])
+            except ValueError:
+                raise EquationError("The equation does not match the formula.")
+        try:
+            if equation[0][1] != 'x' and equation[0][2] != 'x':
+                raise EquationError("The equation does not match the formula.")
+            if equation[1] == '+':
+                b = float(equation[2][0])
+            elif equation[1] == '-':
+                b = -(float(equation[2][0]))
+            else:
+                raise EquationError("The equation does not match the formula.")
+            if equation[3] == '+':
+                c = float(equation[4][0])
+            elif equation[3] == '-':
+                c = -(float(equation[4][0]))
+            else:
+                raise EquationError("The equation does not match the formula.")
+            return a, b, c
+        except (ValueError, IndexError):
+            raise EquationError("The equation does not match the formula.")
+    else:
+        raise TypeError("The format argument can be 'linear_one_variable', 'linear_two_variables', or 'quadratic', not another type.")
+
+            
+def linear_one_variable(a: int | float = 0, b: int | float = 0, solution: bool = False) -> (float | bool):
+    """
+    ENG
+    ---------
+    Solves the linear equation with one variable. Accepts the values `a` and `b` from formula "ax + b = 0" and an optional argument `solution`, which displays the solution on the console. Returns False in case of failure, with root of the linear equation or True(any root) in case of success.
+    
+    RU
+    ---------
+    Решает линейное уравнение с одной переменной. Принимает аргументы `a` и `b` из формулы "ax + b = 0" и необязательный аргумент `solution`, который отвечает за вывод решения на консоль. Возвращает False в случае неудачи, корень уравнения или True(любой корень) в случае успеха.
     """
     try:
         if a == 0 and b != 0:
@@ -30,45 +148,45 @@ def linear_one_variable(a: int | float = 0, b: int | float = 0, solution: bool =
                 print('No roots.')
             return False
         elif a == 0 and b == 0:
+            if solution:
+                print("Any roots.")
             return True
-        if solution:
-            print("Any roots.")
         else:
-            b = -b
             x = -b / a
             if solution:
                 print(f"Root:  x = -b / a = x = {-b} / {a} = {x}.")
             return x
     except TypeError:
-        raise TypeError("a and b must be int, not another type.")
+        raise TypeError("a and b must be int or float, not another type.")
     except Exception as e:
         raise LinearError(f"an error has occured the linear function - {e}.")
 
-def linear_two_variables(a1: int | float = 0, b1: int | float = 0, c1: int | float = 0, a2: int | float = 0, b2: int | float = 0, c2: int | float = 0, solution: bool = False):
+
+def linear_two_variables(a1: int | float = 0, b1: int | float = 0, c1: int | float = 0, a2: int | float = 0, b2: int | float = 0, c2: int | float = 0, solution: bool = False) -> (tuple[float, float] | bool):
     """
     ENG
     ---------
-    Solves a system of linear equations with two variables. Accepts the arguments a1, b1, c1 and a2, b2, c2 from the formula 
+    Solves a system of linear equations with two variables. Accepts the arguments `a1`, `b1`, `c1` and `a2`, `b2`, `c2` from the formula 
 
     {a1 * x + b1 * y = c1, 
 
     {a2 * x + b2 * y = c2. 
 
-    and the optional argument solution, which displays the solution on the console. Returns False in case of failure, a tuple with the roots of the linear equation (x and y), or True (any root) in case of success.
+    and the optional argument `solution`, which displays the solution on the console. Returns `False` in case of failure, a tuple with the roots of the linear equation (x and y), or `True` (any root) in case of success.
     
     RU
     ---------
-    Решает систему линейных уравнений с двумя переменными. Принимает аргументы a1, b1, c1 and a2, b2, c2 из формулы
+    Решает систему линейных уравнений с двумя переменными. Принимает аргументы `a1`, `b1`, `c1` и `a2`, `b2`, `c2` из формулы
 
     {a1 * x + b1 * y = c1, 
 
     {a2 * x + b2 * y = c2.
 
-    и необязательный аргумент solution, который отвечает за вывод решения на консоль. Возвращает False в случае неудачи, кортеж с корнями уравнения(x и y) или True(любой корень) в случае успеха.
+    и необязательный аргумент `solution`, который отвечает за вывод решения на консоль. Возвращает `False` в случае неудачи, кортеж с корнями уравнения(x и y) или `True`(любой корень) в случае успеха.
     """
     try:
         if a1 == 0 or b1 == 0 or a2 == 0 or b2 == 0:
-            raise NotLinearWithTwoVariablesError("For given arguments, a system of linear equations with two variables is a linear equation with one variable.\nTo solve linear equations with one variable, use the linear_one_variable function.")
+            raise NotLinearWithTwoVariablesError("For given arguments, a system of linear equations with two variables is a linear equation with one variable.")
         if c2 != 0 and (a1 / b1) == (b1 / b2) and (a1 / a2) != (c1 / c2):
             if solution:
                 print("No roots.")
@@ -124,7 +242,7 @@ def linear_two_variables(a1: int | float = 0, b1: int | float = 0, c1: int | flo
                 print(f"Root x: x = -b / a = {b1} / {a1} = {x}.")
         return x, y
     except TypeError:
-        raise TypeError("a1, b1, c1 and a2, b2, c2 must be int, not another type.")
+        raise TypeError("a1, b1, c1 and a2, b2, c2 must be int or float, not another type.")
 
 
 
@@ -132,11 +250,11 @@ def quadratic(a: int | float = 0, b: int | float = 0, c: int | float = 0, soluti
     """
     ENG
     --------
-    Solves the quadratic equation. Accepts the values a, b, and c from formula "a(x ** 2) + bx + c = 0" and an optional argument solution, which displays the solution on the console. Returns False in case of failure, or with 1 or 2 roots of a quadratic equation in case of success.
+    Solves the quadratic equation. Accepts the values `a`, `b` and `c` from formula "a(x ** 2) + bx + c = 0" and an optional argument `solution`, which displays the solution on the console. Returns `False` in case of failure, or with 1 or 2 roots of a quadratic equation in case of success.
 
     RU
     --------
-    Решает квадратное уравнение. Принимает аргументы a, b и с из формулы "a(x ** 2) + bx + c = 0" и необязательный аргумент solution, который отвечает за вывод решения на консоль. Возвращает False в случае неудачи или кортеж с 1 или 2 корнями уравнения в случае успеха.
+    Решает квадратное уравнение. Принимает аргументы `a`, `b` и `c` из формулы "a(x ** 2) + bx + c = 0" и необязательный аргумент `solution`, который отвечает за вывод решения на консоль. Возвращает `False` в случае неудачи или кортеж с 1 или 2 корнями уравнения в случае успеха.
     """
     try:
         d = (b ** 2) - 4 * a * c
@@ -160,7 +278,7 @@ def quadratic(a: int | float = 0, b: int | float = 0, c: int | float = 0, soluti
                 print('No roots.')
             return False
     except TypeError:
-        raise TypeError("a, b and c must be int, not another type.")
+        raise TypeError("a, b and c must be int or float, not another type.")
     except Exception as e:
         raise QuadraticError(f"an error has occured the quadratic function - {e}.")
 
