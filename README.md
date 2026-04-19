@@ -22,6 +22,25 @@ For convenience, we recommend importing all necessary methods from the module at
 
 
     from equation_maths_helper import linear_one_variable, linear_two_variables, quadratic
+
+### The `str_in_eq` method ###
+
+The `str_in_eq` method converts the received string into an equation (finds the coefficients). 
+
+
+The method takes a string with a linear equation (`ax + bx = 0`), a system of linear equations with two variables (`a1x + b1x = c1, a2x + b2x = c2`), or a quadratic equation (`ax + bx = 0`), and the `format` argument, which determines the type of equation. Signs in equations are written with a space, systems are written with a comma, and the square is denoted as `x`. Returns a tuple with the coefficients of the equation.
+
+
+ Example of using the method:
+
+    from equation_maths_helper import str_in_eq
+    equation = str_in_eq('1x + 6x - 5 = 0', 'quadratic')
+    print(equation)
+
+
+ Output the coefficients to the console:
+
+    (1.0, 6.0, -5.0)
     
 ### The `linear_one_variable` method ###
 
@@ -40,8 +59,8 @@ An example of using the method:
 
 Output the solution to the console:
 
-    Root: x = -b / a = x = 1 / 1 = 1.0.
-    1.0
+    Root: x = -b / a = x = -1 / 1 = -1.0.
+    -1.0
     
 ### The `linear_two_variables` method ###
 
@@ -121,6 +140,25 @@ Output the solution to the console:
 
     from equation_maths_helper import linear_one_variable, linear_two_variables, quadratic
 
+### Метод `str_in_eq` ###
+
+Метод `str_in_eq` переводит полученную строку в уравнение(находит коэффициенты). 
+
+
+Метод принимает строку с линейным уравнением(`ax + bx = 0`), с системой линейных уравнений с двумя переменными(`a1x + b1x = c1, a2x + b2x = c2`) или с квадратным уравнением(`ax + bx = 0`) и аргумент `format`, отвечающий за тип уравнения. Знаки в уравнениях пишутся через пробел, системы пишутся через запятую, квадрат обозначается как `x`. Возвращает кортеж с коэффиентами уравнения.
+
+
+Пример использования метода:
+
+    from equation_maths_helper import str_in_eq
+    equation = str_in_eq('1x + 6x - 5 = 0', 'quadratic')
+    print(equation)
+
+
+Вывод коэффициентов на консоль:
+
+    (1.0, 6.0, -5.0)
+    
 ### Метод `linear_one_variable` ###
 
 Метод `linear_one_variable` позволяет решать линейные уравнения с одной переменной.
@@ -138,8 +176,8 @@ Output the solution to the console:
 
 Вывод решения на консоль:
 
-    Root:  x = -b / a = x = 1 / 1 = 1.0.
-    1.0
+    Root:  x = -b / a = x = -1 / 1 = -1.0.
+    -1.0
 
 ### Метод `linear_two_variables` ###
 
